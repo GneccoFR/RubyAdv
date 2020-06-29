@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     Rigidbody2D rigidbody2D;
-
+    Animator animator;
     public bool vertical;
     public float enemySpeed = 2.0f;
     public float changeTime = 3.0f;
@@ -18,15 +18,16 @@ public class EnemyController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
+        animator = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        RubyController controller = other.GetComponent<RubyController>();
+        RubyController player = other.gameObject.GetComponent<RubyController>();
 
-        if (controller != null)
+        if (player != null)
         {
-            controller.ChangeHealth(-enemyDamage);
+            player.ChangeHealth(-enemyDamage);
 
         }
     }
@@ -49,13 +50,15 @@ public class EnemyController : MonoBehaviour
         if (vertical)
         {
             position.y = position.y + enemySpeed * Time.deltaTime * direction;
-
+            animator.SetFloat("Move X", 0);
+            animator.SetFloat("Move Y", direction);
             
         }
         else
         {
             position.x = position.x + enemySpeed * Time.deltaTime * direction;
-
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
 
         }
 
