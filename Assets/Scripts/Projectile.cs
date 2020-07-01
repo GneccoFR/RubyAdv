@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2D;
-
-    // Start is called before the first frame update
+    SpriteRenderer spriterenderer;
+    
+    //For turning effect. 
+    bool turn = true;
+    
     void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        spriterenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Launch(Vector2 direction, float force)
@@ -19,13 +24,21 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Projectile Collision with " + other.gameObject);
+        EnemyController e = other.collider.GetComponent<EnemyController>();
+
+        if (e != null)
+            e.Fix();
+
         Destroy(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //Adds a little turning effect by flipping the sprite instead of makiing a whole animation for it.
+        spriterenderer.flipX = turn;
+        turn = !turn;
+
+        if (transform.position.magnitude > 1000.0f)
+            Destroy(gameObject);
     }
 }

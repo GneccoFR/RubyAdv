@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public float changeTime = 3.0f;
     public int enemyDamage = 2;
 
+    bool broken = true;
     float timer;
     int direction = 1;
 
@@ -32,19 +33,33 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void Fix()
+    {
+        broken = false;
+        rigidbody2D.simulated = false;
+        animator.SetTrigger("Fixed");
+    }
+
     void Update()
     {
+        if (!broken)
+            return;
+
         timer -= Time.deltaTime;
         if (timer < 0)
         {
             direction = -direction;
             timer = changeTime;
+            //Possible making of guarding patrols moving patrons, check later.
+            //vertical = !vertical;
         }
     }
 
     public void FixedUpdate()
     {
-        
+        if (!broken)
+            return;
+
         Vector2 position = rigidbody2D.position;
 
         if (vertical)
