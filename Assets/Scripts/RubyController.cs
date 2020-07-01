@@ -6,6 +6,7 @@ public class RubyController : MonoBehaviour
 {
     Animator animator;
     Rigidbody2D rigidbody2D;
+    public ParticleSystem smokeEffect;
 
     float horizontal;
     float vertical;
