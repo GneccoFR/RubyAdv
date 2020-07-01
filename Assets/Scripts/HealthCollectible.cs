@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
-    public ParticleSystem pickUpEffect;
+    public int cureAmount = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +14,7 @@ public class HealthCollectible : MonoBehaviour
         {
             if (controller.health < controller.maxHealth)
             {
-                controller.ChangeHealth(1);
+                controller.ChangeHealth(cureAmount);
                 Destroy(gameObject);
             }        
         }

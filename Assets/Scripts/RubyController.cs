@@ -6,7 +6,8 @@ public class RubyController : MonoBehaviour
 {
     Animator animator;
     Rigidbody2D rigidbody2D;
-    public ParticleSystem smokeEffect;
+    
+    public ParticleSystem pickUpEffect;
 
     float horizontal;
     float vertical;
@@ -96,6 +97,8 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
+        else
+            pickUpEffect.Play();
             currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
             Debug.Log(currentHealth + "/" + maxHealth);
         
