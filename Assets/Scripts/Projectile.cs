@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     Rigidbody2D rigidbody2D;
     SpriteRenderer spriterenderer;
     
-    //For turning effect. 
+    //For turning visual effect. 
     bool turn = true;
     
     void Awake()
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        //Adds a little turning effect by flipping the sprite instead of makiing a whole animation for it.
+        //Adds a little turning visual effect by flipping the sprite instead of making a whole animation for it.
         spriterenderer.flipX = turn;
         turn = !turn;
 

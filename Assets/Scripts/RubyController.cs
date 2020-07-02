@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
+    public AudioClip hitClip;
+    public AudioClip throwingClip;
+    AudioSource audioSource;
     Animator animator;
     Rigidbody2D rigidbody2D;
     public ParticleSystem pickUpEffect;
@@ -24,6 +27,7 @@ public class RubyController : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
@@ -77,12 +81,18 @@ public class RubyController : MonoBehaviour
         rigidbody2D.MovePosition(position);
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+
     void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up* 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
         animator.SetTrigger("Launch");
+        PlaySound(throwingClip);
     }
 
     public void ChangeHealth (int amount)
@@ -92,7 +102,7 @@ public class RubyController : MonoBehaviour
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
-
+            PlaySound(hitClip);
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }

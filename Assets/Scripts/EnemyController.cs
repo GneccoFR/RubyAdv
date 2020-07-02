@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public AudioClip bonkClip;
+    public AudioClip fixClip;
+    AudioSource audioSource;
     Rigidbody2D rigidbody2D;
     Animator animator;
     public ParticleSystem smokeEffect;
@@ -20,6 +23,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
@@ -31,12 +35,15 @@ public class EnemyController : MonoBehaviour
 
         if (player != null)
         {
+            audioSource.PlayOneShot(bonkClip);
             player.ChangeHealth(-enemyDamage);
         }
     }
 
     public void Fix()
     {
+        audioSource.Stop();
+        audioSource.PlayOneShot(fixClip);
         hitEffect.Play();
         smokeEffect.Stop();
         broken = false;
