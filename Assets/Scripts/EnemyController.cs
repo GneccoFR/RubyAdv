@@ -32,7 +32,6 @@ public class EnemyController : MonoBehaviour
         if (player != null)
         {
             player.ChangeHealth(-enemyDamage);
-
         }
     }
 
@@ -71,18 +70,15 @@ public class EnemyController : MonoBehaviour
         {
             position.y = position.y + enemySpeed * Time.deltaTime * direction;
             animator.SetFloat("Move X", 0);
-            animator.SetFloat("Move Y", direction);
-            
+            animator.SetFloat("Move Y", direction);   
         }
         else
         {
             position.x = position.x + enemySpeed * Time.deltaTime * direction;
             animator.SetFloat("Move X", direction);
             animator.SetFloat("Move Y", 0);
-
         }
 
         rigidbody2D.MovePosition(position);
     }
-
 }
