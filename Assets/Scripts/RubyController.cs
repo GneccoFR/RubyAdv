@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
+    public GameObject inGameMenu;
     public AudioClip hitClip;
     public AudioClip throwingClip;
     AudioSource audioSource;
@@ -71,6 +72,8 @@ public class RubyController : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+            inGameMenu.SetActive(true);
     }
 
     void FixedUpdate()
