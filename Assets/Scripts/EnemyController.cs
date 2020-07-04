@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    QuestManager questManager;
     public AudioClip bonkClip;
     public AudioClip fixClip;
     AudioSource audioSource;
@@ -21,6 +22,10 @@ public class EnemyController : MonoBehaviour
     float timer;
     int direction = 1;
 
+    private void Awake()
+    {
+        questManager = QuestManager.GetInstance();       
+    }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -46,6 +51,7 @@ public class EnemyController : MonoBehaviour
         audioSource.PlayOneShot(fixClip);
         hitEffect.Play();
         smokeEffect.Stop();
+        questManager.CheckRobotFix(1);
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
@@ -61,7 +67,7 @@ public class EnemyController : MonoBehaviour
         {
             direction = -direction;
             timer = changeTime;
-            //Possible making of guarding patrols moving patrons, check later.
+            //Possible making of more complex guarding moving patrols, check later.
             //vertical = !vertical;
         }
     }

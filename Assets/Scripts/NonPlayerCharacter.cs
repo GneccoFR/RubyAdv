@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NonPlayerCharacter : MonoBehaviour
 {
+    public AudioClip questComplete;
+    AudioSource audioSource;
     public GameObject dialogBox;
     public float displayTime = 4.0f;
     float timerDisplay;
@@ -17,6 +19,11 @@ public class NonPlayerCharacter : MonoBehaviour
     {
         timerDisplay = displayTime;
         dialogBox.SetActive(true);
+    }
+
+    public void Greeting()
+    {
+        audioSource.PlayOneShot(questComplete);
     }
 
     void Update()
