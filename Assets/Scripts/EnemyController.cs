@@ -22,12 +22,10 @@ public class EnemyController : MonoBehaviour
     float timer;
     int direction = 1;
 
-    private void Awake()
-    {
-        questManager = QuestManager.GetInstance();       
-    }
+
     void Start()
     {
+        questManager = QuestManager.GetInstance();
         audioSource = GetComponent<AudioSource>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
@@ -51,7 +49,7 @@ public class EnemyController : MonoBehaviour
         audioSource.PlayOneShot(fixClip);
         hitEffect.Play();
         smokeEffect.Stop();
-        questManager.CheckRobotFix(1);
+        questManager.RobotFixed();
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");

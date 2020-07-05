@@ -6,17 +6,29 @@ using UnityEngine.Audio;
 
 public class LevelManager : MonoBehaviour
 {
-    public AudioMixer mixer;
-    //private GameManager gameManager;
+    private GameManager gameManager;
+    public InGameMenu inGameMenu;
+    public LoseMenu loseMenu;
     public Slider levelVolume;
-    private void Awake()
+    private void Start()
     {
-        //gameManager = GameManager.GetInstance();
-        //setdifficult = difficult;
+        gameManager = GameManager.GetInstance();
     }
 
     public void SetLevelVolume()
     {
-        mixer.SetFloat("masterVolume", Mathf.Log10(levelVolume.value) * 20);
+        gameManager.mixer.SetFloat("masterVolume", Mathf.Log10(levelVolume.value) * 20);
     }
+
+    public void Lose()
+    {
+        loseMenu.Lose();
+    }
+
+    public void PauseGame()
+    {
+        inGameMenu.PauseGame();
+    }
+
+
 }

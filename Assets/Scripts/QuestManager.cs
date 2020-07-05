@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public NonPlayerCharacter NPC;
-    //public AudioSource audioSource;
+    public Jambi jambi;
     public static QuestManager instance = null;
     //this class should manage the game objectives
-    public TextMeshProUGUI dialog;
     int maxRobots = 5; // + LevelManager.setdifficult;
+    int robotsFixed = 0;
 
     private void Awake()
     {
@@ -20,8 +19,6 @@ public class QuestManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
-        //audioSource = NPC.GetComponent<AudioSource>();
     }
 
     public static QuestManager GetInstance()
@@ -31,19 +28,17 @@ public class QuestManager : MonoBehaviour
 
     // Fix all the Robots
     // The more the robots, the more de difficulty
-    public void CheckRobotFix(int count)
+    public void RobotFixed()
     {
-        maxRobots = maxRobots - count;
-        Debug.Log(maxRobots);
-        if (maxRobots <= 0)
+        robotsFixed += 1;
+        Debug.Log(robotsFixed);
+        if (robotsFixed == maxRobots)
         {
-            //NPC.Greeting();
-            dialog.text = "You did it! You Fixed All The Robots!";
+            jambi.QuestCompleted();
         }
     }
 
    // Collect all the fruits
    
-    
-    // Not diying
+   
 }

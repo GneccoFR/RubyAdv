@@ -1,16 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
-    public GameObject inGameMenu;
+    
+    private bool active = false;
     
     private void Update()
     {
-        if (inGameMenu.activeSelf == true)
-            Time.timeScale = 0;
+        if (!active) return;
+        if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
+    }
+
+    public void PauseGame()
+    {
+        active = true;
+        Time.timeScale = 0;
+        gameObject.SetActive(true);
     }
 
     public void ReturnTitle()
@@ -20,7 +29,8 @@ public class InGameMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        active = false;
         Time.timeScale = 1;
-        inGameMenu.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

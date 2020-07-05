@@ -13,6 +13,11 @@ public class OptionsMenu : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) MainMenu();
+    }
+
     public void MainMenu()
     {   
         mainMenu.SetActive(true);

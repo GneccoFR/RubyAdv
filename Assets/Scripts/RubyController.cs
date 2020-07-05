@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
-    public GameObject inGameMenu;
     public AudioClip hitClip;
     public AudioClip throwingClip;
     AudioSource audioSource;
@@ -25,6 +24,8 @@ public class RubyController : MonoBehaviour
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
+    bool alive;
+    public LevelManager levelManager;
 
     void Start()
     {
@@ -32,10 +33,12 @@ public class RubyController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        alive = true;
     }
 
     void Update()
     {
+        if (!alive) return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -68,12 +71,12 @@ public class RubyController : MonoBehaviour
             {
                 NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
                 if (character != null)
-                    character.DisplayDialog();
+                    character.Interact();
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            inGameMenu.SetActive(true);
+            levelManager.PauseGame();
     }
 
     void FixedUpdate()
@@ -102,6 +105,7 @@ public class RubyController : MonoBehaviour
     {
         if (amount < 0)
         {
+            
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
@@ -114,5 +118,14 @@ public class RubyController : MonoBehaviour
             
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+        if (currentHealth <= 0) Die();
+    }
+
+    public void Die()
+    {
+        alive = false;
+        horizontal = 0;
+        vertical = 0;
+        levelManager.Lose();
     }
 }
