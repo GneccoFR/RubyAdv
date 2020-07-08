@@ -347,7 +347,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 80.659546, y: 0, z: 0, w: 0.15359497}
+  m_margin: {x: 69.565094, y: 0, z: 0, w: 0.15359497}
   m_textInfo:
     textComponent: {fileID: 3143981703867135179}
     characterCount: 13
@@ -531,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3143981704579414481}
   m_Layer: 5
-  m_Name: SliderButton
+  m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
