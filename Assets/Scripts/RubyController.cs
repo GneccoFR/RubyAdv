@@ -6,6 +6,8 @@ public class RubyController : MonoBehaviour
 {
     public AudioClip hitClip;
     public AudioClip throwingClip;
+    public Joystick mobileJoystick;
+    public GameObject mobileUI;
     AudioSource audioSource;
     Animator animator;
     Rigidbody2D rigidbody2D;
@@ -27,6 +29,17 @@ public class RubyController : MonoBehaviour
     bool alive;
     public LevelManager levelManager;
 
+    private void Awake()
+    {
+
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+        return;
+#else
+        mobileUI.SetActive(true);
+#endif
+
+    }
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -39,9 +52,18 @@ public class RubyController : MonoBehaviour
     void Update()
     {
         if (!alive) return;
+
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+        
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
+#else
+
+        horizontal = mobileJoystick.Horizontal;
+        vertical = mobileJoystick.Vertical;
+
+#endif        
         Vector2 move = new Vector2(horizontal, vertical);
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
@@ -92,7 +114,7 @@ public class RubyController : MonoBehaviour
         audioSource.PlayOneShot(clip);
     }
 
-    void Launch()
+    public void Launch()
     {
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
