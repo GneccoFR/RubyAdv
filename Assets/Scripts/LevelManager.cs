@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
+    public GameObject mobileInstructions;
     public InGameMenu inGameMenu;
     public LoseMenu loseMenu;
     public Slider levelVolume;
@@ -24,6 +25,13 @@ public class LevelManager : MonoBehaviour
     {
         loseMenu.Lose();
     }
+
+    public void DisableInstructions()
+    {
+        mobileInstructions.SetActive(false);
+    }
+
+
 
     public void PauseGame()
     {
