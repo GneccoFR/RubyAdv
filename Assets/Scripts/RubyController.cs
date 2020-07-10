@@ -7,7 +7,7 @@ public class RubyController : MonoBehaviour
     public AudioClip hitClip;
     public AudioClip throwingClip;
     public Joystick mobileJoystick;
-    public GameObject mobileUI;
+    
     AudioSource audioSource;
     Animator animator;
     Rigidbody2D rigidbody2D;
@@ -28,17 +28,6 @@ public class RubyController : MonoBehaviour
     float invincibleTimer;
     bool alive;
     public LevelManager levelManager;
-
-    private void Awake()
-    {
-
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
-        return;
-#else
-        mobileUI.SetActive(true);
-#endif
-
-    }
 
     void Start()
     {
@@ -87,12 +76,13 @@ public class RubyController : MonoBehaviour
             Launch();
 
         if (Input.GetKeyDown(KeyCode.X))
-        {
             attemptToInteract();
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
             levelManager.PauseGame();
+
+        if (Input.GetKeyDown(KeyCode.H))
+            levelManager.OnOffInstructions();
     }
 
     void FixedUpdate()
@@ -110,7 +100,7 @@ public class RubyController : MonoBehaviour
 
     public void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.3f, Quaternion.identity);
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
         animator.SetTrigger("Launch");
@@ -119,7 +109,7 @@ public class RubyController : MonoBehaviour
 
     public void attemptToInteract()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rigidbody2D.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+        RaycastHit2D hit = Physics2D.Raycast(rigidbody2D.position + Vector2.up * 0.3f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
         if (hit.collider != null)
         {
             NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
@@ -131,8 +121,7 @@ public class RubyController : MonoBehaviour
     public void ChangeHealth (int amount)
     {
         if (amount < 0)
-        {
-            
+        { 
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
