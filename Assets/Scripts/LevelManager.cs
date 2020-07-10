@@ -7,10 +7,23 @@ using UnityEngine.Audio;
 public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
+    public GameObject standAloneInstructions;
+    public GameObject mobileUI;
     public GameObject mobileInstructions;
     public InGameMenu inGameMenu;
     public LoseMenu loseMenu;
     public Slider levelVolume;
+
+    private void Awake()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+        standAloneInstructions.SetActive(true);
+#else
+        mobileInstructions.SetActive(true);
+        mobileUI.SetActive(true);
+#endif
+    }
+
     private void Start()
     {
         gameManager = GameManager.GetInstance();
@@ -28,7 +41,11 @@ public class LevelManager : MonoBehaviour
 
     public void DisableInstructions()
     {
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER
+        standAloneInstructions.SetActive(false);
+#else
         mobileInstructions.SetActive(false);
+#endif
     }
 
 

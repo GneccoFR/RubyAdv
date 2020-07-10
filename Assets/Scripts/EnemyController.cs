@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    QuestManager questManager;
+    private QuestManager questManager;
     public AudioClip bonkClip;
     public AudioClip fixClip;
     AudioSource audioSource;
@@ -32,14 +32,20 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        RubyController player = other.gameObject.GetComponent<RubyController>();
-
-        if (player != null)
+        Projectile projectileCollided = collision.gameObject.GetComponent<Projectile>();
+        if (projectileCollided != null)
         {
             audioSource.PlayOneShot(bonkClip);
-            player.ChangeHealth(-enemyDamage);
+            Fix();
+        }
+
+        RubyController playerCollided = collision.gameObject.GetComponent<RubyController>();
+        if (playerCollided != null)
+        {
+            audioSource.PlayOneShot(bonkClip);
+            playerCollided.ChangeHealth(-enemyDamage);
         }
     }
 
