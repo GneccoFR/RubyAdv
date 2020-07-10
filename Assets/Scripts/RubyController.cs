@@ -76,12 +76,13 @@ public class RubyController : MonoBehaviour
             Launch();
 
         if (Input.GetKeyDown(KeyCode.X))
-        {
             attemptToInteract();
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
             levelManager.PauseGame();
+
+        if (Input.GetKeyDown(KeyCode.H))
+            levelManager.OnOffInstructions();
     }
 
     void FixedUpdate()

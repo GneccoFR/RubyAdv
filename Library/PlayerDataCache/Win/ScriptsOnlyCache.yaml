@@ -933,7 +933,7 @@ ScriptsOnlyBuild:
     className: CinemachineInputProvider
   - hash:
       serializedVersion: 2
-      Hash: 4dfb10ebf4a0bf990a1efbc3a245da4e
+      Hash: 5820188c376c3aedc633e9a8c233af81
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
@@ -1121,5 +1121,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Main.unity
-  playerPath: C:/Users/Core I7/Desktop/Practicas Fabi/Builds/Ruby's Adventure Alpha0.2/Ruby's
+  playerPath: C:/Users/Core I7/Desktop/Practicas Fabi/Builds/Ruby's Adventure Alpha0.4/Ruby's
     Adventure.exe
