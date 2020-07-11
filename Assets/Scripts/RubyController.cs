@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RubyController : MonoBehaviour
 {
     public AudioClip hitClip;
     public AudioClip throwingClip;
     public Joystick mobileJoystick;
-    
+    public LevelManager levelManager;
+    public TextMeshProUGUI ammoDisplay;
     AudioSource audioSource;
     Animator animator;
     Rigidbody2D rigidbody2D;
@@ -27,10 +29,14 @@ public class RubyController : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
     bool alive;
-    public LevelManager levelManager;
+
+    public int currentAmmo;
+    public int maxAmmo;
 
     void Start()
     {
+        maxAmmo = 5;
+        currentAmmo = maxAmmo;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -100,11 +106,16 @@ public class RubyController : MonoBehaviour
 
     public void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.3f, Quaternion.identity);
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-        animator.SetTrigger("Launch");
-        PlaySound(throwingClip);
+        if (currentAmmo > 0)
+        {
+            GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.3f, Quaternion.identity);
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
+            animator.SetTrigger("Launch");
+            PlaySound(throwingClip);
+            currentAmmo -= 1;
+            RecountAmmo();
+        }
     }
 
     public void attemptToInteract()
@@ -135,6 +146,11 @@ public class RubyController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
         if (currentHealth <= 0) Die();
+    }
+
+    public void RecountAmmo()
+    {
+        ammoDisplay.text = "= " + currentAmmo + "/" + maxAmmo;
     }
 
     public void Die()
