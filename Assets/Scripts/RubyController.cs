@@ -132,7 +132,7 @@ public class RubyController : MonoBehaviour
     public void ChangeHealth (int amount)
     {
         if (amount < 0)
-        { 
+        {
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
@@ -140,8 +140,6 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
-        else
-            pickUpEffect.Play();
             
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
@@ -151,6 +149,11 @@ public class RubyController : MonoBehaviour
     public void RecountAmmo()
     {
         ammoDisplay.text = "= " + currentAmmo + "/" + maxAmmo;
+    }
+
+    public void PickEffect()
+    {
+        pickUpEffect.Play();
     }
 
     public void Die()

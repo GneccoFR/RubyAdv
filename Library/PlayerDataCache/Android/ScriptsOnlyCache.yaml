@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AmmoCollectible
     - DamageZone
     - EnemyController
     - FloatingJoystick
@@ -118,29 +119,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13040}
     - Class: 114
-      Script: {instanceID: 13108}
+      Script: {instanceID: 13100}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13110}
     - Class: 114
-      Script: {instanceID: 13262}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 13264}
     - Class: 114
-      Script: {instanceID: 13434}
+      Script: {instanceID: 13350}
     - Class: 114
-      Script: {instanceID: 13586}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13664}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 13814}
+      Script: {instanceID: 13666}
     - Class: 114
-      Script: {instanceID: 13858}
+      Script: {instanceID: 13816}
     - Class: 114
-      Script: {instanceID: 13916}
+      Script: {instanceID: 13860}
     - Class: 114
-      Script: {instanceID: 13920}
+      Script: {instanceID: 13918}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13922}
+    - Class: 114
+      Script: {instanceID: 13968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -221,15 +224,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13038}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 13350}
     - Class: 114
-      Script: {instanceID: 13434}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13670}
+      Script: {instanceID: 13672}
     - Class: 114
-      Script: {instanceID: 13764}
+      Script: {instanceID: 13766}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -825,6 +828,12 @@ ScriptsOnlyBuild:
     className: CinemachineTouchInputMapper
   - hash:
       serializedVersion: 2
+      Hash: f0f1b3ff9fe564a7c356425f08445d4a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AmmoCollectible
+  - hash:
+      serializedVersion: 2
       Hash: df76de5fb2b27007d514fdb38b91cf89
     assemblyName: Cinemachine.dll
     namespaceName: Cinemachine
@@ -1047,7 +1056,7 @@ ScriptsOnlyBuild:
     className: CinemachineBrain
   - hash:
       serializedVersion: 2
-      Hash: 256226ce0ad1f65487f1f16b56242a4a
+      Hash: 57941b901143b953160f26b25e4bb95a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RubyController
@@ -1122,4 +1131,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Main.unity
   playerPath: C:/Users/Core I7/Desktop/Practicas Fabi/Builds/Ruby's Adventure Mob
-    Alpha/RubyMobAlpha0.4.4.apk
+    Alpha/RubyMobAlpha0.4.5.apk

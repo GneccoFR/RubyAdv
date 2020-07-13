@@ -15,6 +15,7 @@ public class AmmoCollectible : MonoBehaviour
         {
             if (controller.currentAmmo < controller.maxAmmo)
             {
+                controller.PickEffect();
                 controller.PlaySound(collectedClip);
                 controller.currentAmmo += ammoAmount;
                 controller.RecountAmmo();

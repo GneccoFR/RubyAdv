@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 1
-  controlID: 14871
+  controlID: 6940
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 14872
+  controlID: 6941
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 231, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 14912
+  controlID: 6942
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,8 +295,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 430
-    y: 19
+    x: 429.33334
+    y: 72.66667
     width: 573
     height: 567
   m_ViewDataDictionary: {fileID: 0}
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_MaximizeOnPlay: 1
+  m_MaximizeOnPlay: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -344,23 +344,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1280
-      height: 548
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 640, y: 274}
+      width: 573
+      height: 546
+    m_Scale: {x: 0.67148435, y: 0.67148435}
+    m_Translation: {x: 286.5, y: 273}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -640
-      y: -274
-      width: 1280
-      height: 548
+      x: -426.6667
+      y: -406.56198
+      width: 853.3334
+      height: 813.12396
     m_MinimalGUI: 1
-  m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1920, y: 853.5}
+  m_defaultScale: 0.67148435
+  m_LastWindowPixelSize: {x: 859.5, y: 850.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -397,7 +397,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: daf8ffff5efbffff2a3a0000
+      m_ExpandedIDs: 62c6ffff76c6ffff94caffffa0cafffff8d2ffffccf7ffff7cf8ffff5efbfffff4ffffff2c380000163a0000263b00002e3b0000e21a0100c61b0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -578,20 +578,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Audio
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Audio
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Core I7\Desktop\Practicas Fabi\Git\RubyAdv
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 158}
-    m_SelectedIDs: 143f0000
-    m_LastClickedID: 16148
-    m_ExpandedIDs: 00000000fa3e0000fc3e0000fe3e0000003f0000123f00001c3f0000543f000000ca9a3b
+    scrollPos: {x: 0, y: 142}
+    m_SelectedIDs: 963f0000
+    m_LastClickedID: 16278
+    m_ExpandedIDs: 00000000603f0000623f0000643f0000663f0000683f00006c3f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,7 +619,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 484c0000
     m_LastClickedID: 19528
-    m_ExpandedIDs: 00000000fa3e0000fc3e0000fe3e0000003f0000123f00001c3f0000543f000000ca9a3b
+    m_ExpandedIDs: 00000000603f0000623f0000643f0000663f0000683f00006c3f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000184900007c390000c63d000098480000003b0000e23700004ce8ffff823700008c3a0000563b00003e540000e23900001289ffff4e3b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 120}
+    m_ScrollPosition: {x: 0, y: 72}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 140
@@ -711,9 +711,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 630.30615, y: 530.0735, z: -113.37608}
+    m_Target: {x: -0.053672552, y: -5.997532, z: 0}
     speed: 2
-    m_Value: {x: 630.30615, y: 530.0735, z: -113.37608}
+    m_Value: {x: -0.053672552, y: -5.997532, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -763,9 +763,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 632.8425
+    m_Target: 3.8752677
     speed: 2
-    m_Value: 632.8425
+    m_Value: 3.8752677
   m_Ortho:
     m_Target: 1
     speed: 2
