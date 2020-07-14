@@ -35,13 +35,14 @@ public class RubyController : MonoBehaviour
 
     void Start()
     {
-        maxAmmo = 5;
-        currentAmmo = maxAmmo;
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        
         currentHealth = maxHealth;
         alive = true;
+        maxAmmo = 5;
+        currentAmmo = maxAmmo;
     }
 
     void Update()
@@ -58,25 +59,11 @@ public class RubyController : MonoBehaviour
         horizontal = mobileJoystick.Horizontal;
         vertical = mobileJoystick.Vertical;
 
-#endif        
-        Vector2 move = new Vector2(horizontal, vertical);
+#endif
 
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
+        MoveAnimation();
 
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
-
-        if (isInvincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer < 0)
-                isInvincible = false;
-        }
+        InvincibleCheck();
 
         if (Input.GetKeyDown(KeyCode.C))
             Launch();
@@ -97,6 +84,36 @@ public class RubyController : MonoBehaviour
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
         rigidbody2D.MovePosition(position);
+    }
+
+    public void InvincibleCheck()
+    {
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+    }
+
+    public void CheckDirection(Vector2 direction)
+    {
+        if (!Mathf.Approximately(direction.x, 0.0f) || !Mathf.Approximately(direction.y, 0.0f))
+        {
+            lookDirection.Set(direction.x, direction.y);
+            lookDirection.Normalize();
+        }
+    }
+
+    public void MoveAnimation()
+    {
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        CheckDirection(move);
+
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
     }
 
     public void PlaySound(AudioClip clip)

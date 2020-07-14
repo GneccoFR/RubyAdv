@@ -25,11 +25,52 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        questManager = QuestManager.GetInstance();
         audioSource = GetComponent<AudioSource>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        timer = changeTime;
         animator = GetComponent<Animator>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        
+        timer = changeTime;
+        questManager = QuestManager.GetInstance();
+    }
+
+    void Update()
+    {
+       
+    }
+
+    void FixedUpdate()
+    {
+        if (!broken)
+            return;
+
+        DirectionTimer();
+
+        Vector2 position = rigidbody2D.position;
+
+        if (vertical)
+        {
+            position.y = position.y + enemySpeed * Time.deltaTime * direction;
+            animator.SetFloat("Move X", 0);
+            animator.SetFloat("Move Y", direction);
+        }
+        else
+        {
+            position.x = position.x + enemySpeed * Time.deltaTime * direction;
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
+        }
+
+        rigidbody2D.MovePosition(position);
+    }
+
+    public void DirectionTimer()
+    {
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            direction = -direction;
+            timer = changeTime;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -59,43 +100,5 @@ public class EnemyController : MonoBehaviour
         broken = false;
         rigidbody2D.simulated = false;
         animator.SetTrigger("Fixed");
-    }
-
-    void Update()
-    {
-        if (!broken)
-            return;
-
-        timer -= Time.deltaTime;
-        if (timer < 0)
-        {
-            direction = -direction;
-            timer = changeTime;
-            //Possible making of more complex guarding moving patrols, check later.
-            //vertical = !vertical;
-        }
-    }
-
-    public void FixedUpdate()
-    {
-        if (!broken)
-            return;
-
-        Vector2 position = rigidbody2D.position;
-
-        if (vertical)
-        {
-            position.y = position.y + enemySpeed * Time.deltaTime * direction;
-            animator.SetFloat("Move X", 0);
-            animator.SetFloat("Move Y", direction);   
-        }
-        else
-        {
-            position.x = position.x + enemySpeed * Time.deltaTime * direction;
-            animator.SetFloat("Move X", direction);
-            animator.SetFloat("Move Y", 0);
-        }
-
-        rigidbody2D.MovePosition(position);
     }
 }
