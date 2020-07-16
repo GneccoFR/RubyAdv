@@ -80,10 +80,7 @@ public class RubyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 position = rigidbody2D.position;
-        position.x = position.x + speed * horizontal * Time.deltaTime;
-        position.y = position.y + speed * vertical * Time.deltaTime;
-        rigidbody2D.MovePosition(position);
+        PhysicalMove();
     }
 
     public void InvincibleCheck()
@@ -94,7 +91,7 @@ public class RubyController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
-    }
+    } 
 
     public void CheckDirection(Vector2 direction)
     {
@@ -103,6 +100,14 @@ public class RubyController : MonoBehaviour
             lookDirection.Set(direction.x, direction.y);
             lookDirection.Normalize();
         }
+    }
+
+    public void PhysicalMove()
+    {
+        Vector2 position = rigidbody2D.position;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
+        rigidbody2D.MovePosition(position);
     }
 
     public void MoveAnimation()
@@ -114,11 +119,6 @@ public class RubyController : MonoBehaviour
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
-    }
-
-    public void PlaySound(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
     }
 
     public void Launch()
@@ -173,6 +173,11 @@ public class RubyController : MonoBehaviour
         pickUpEffect.Play();
     }
 
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+    
     public void Die()
     {
         alive = false;

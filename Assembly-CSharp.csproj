@@ -71,9 +71,8 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\AmmoCollectible.cs" />
-    <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\DamageZone.cs" />
-    <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HealthCollectible.cs" />
     <Compile Include="Assets\Scripts\InGameMenu.cs" />
@@ -87,6 +86,7 @@
     <Compile Include="Assets\Scripts\QuestManager.cs" />
     <Compile Include="Assets\Scripts\RubyController.cs" />
     <Compile Include="Assets\Scripts\UIHealthBar.cs" />
+    <Compile Include="Assets\Scripts\VanillaEnemy.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
