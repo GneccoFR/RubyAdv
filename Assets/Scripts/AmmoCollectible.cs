@@ -5,7 +5,7 @@ using UnityEngine;
 public class AmmoCollectible : MonoBehaviour
 {
     public AudioClip collectedClip;
-    public int ammoAmount = 2;
+    public int ammoAmount = 5;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

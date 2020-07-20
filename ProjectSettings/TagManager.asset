@@ -47,3 +47,9 @@ TagManager:
   - name: Ground
     uniqueID: 3766480507
     locked: 0
+  - name: Above Ground
+    uniqueID: 1353266279
+    locked: 0
+  - name: Air
+    uniqueID: 1619764255
+    locked: 0

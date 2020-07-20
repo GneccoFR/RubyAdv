@@ -100,15 +100,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8e6a1ff79e42c458d4b4eb9ce2ef16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGameMenu: {fileID: 0}
   hitClip: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
   throwingClip: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
+  mobileJoystick: {fileID: 0}
+  levelManager: {fileID: 0}
+  ammoDisplay: {fileID: 0}
   pickUpEffect: {fileID: 9162509933006585528}
   projectilePrefab: {fileID: 4215036252674946872, guid: d8fb92d00d311a24ca47969e51c5ec6e,
     type: 3}
   speed: 5
   maxHealth: 5
   timeInvincible: 2
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!50 &4393163095682537784
 Rigidbody2D:
   serializedVersion: 4
