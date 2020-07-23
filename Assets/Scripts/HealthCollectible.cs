@@ -15,6 +15,7 @@ public class HealthCollectible : MonoBehaviour
         {
             if (controller.health < controller.maxHealth)
             {
+                controller.PickEffect();
                 controller.PlaySound(collectedClip);
                 controller.ChangeHealth(cureAmount);
                 Destroy(gameObject);

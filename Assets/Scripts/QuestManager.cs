@@ -8,7 +8,7 @@ public class QuestManager : MonoBehaviour
     public Jambi jambi;
     public static QuestManager instance = null;
     //this class should manage the game objectives
-    int maxRobots = 5; // + LevelManager.setdifficult;
+    public int maxRobots = 5; // + LevelManager.setdifficult;
     int robotsFixed = 0;
 
     private void Awake()

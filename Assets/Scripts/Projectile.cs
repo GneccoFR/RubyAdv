@@ -37,5 +37,6 @@ public class Projectile : MonoBehaviour
         bulletLifespan = bulletLifespan - Time.deltaTime;
         if (bulletLifespan <= 0)
             Destroy(gameObject);
+            
     }
 }

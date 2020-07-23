@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RubyController : MonoBehaviour
 {
     public AudioClip hitClip;
     public AudioClip throwingClip;
     public Joystick mobileJoystick;
-    
+    public LevelManager levelManager;
+    public TextMeshProUGUI ammoDisplay;
     AudioSource audioSource;
     Animator animator;
     Rigidbody2D rigidbody2D;
@@ -27,15 +29,20 @@ public class RubyController : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
     bool alive;
-    public LevelManager levelManager;
+
+    public int currentAmmo;
+    public int maxAmmo;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        
         currentHealth = maxHealth;
         alive = true;
+        maxAmmo = 5;
+        currentAmmo = maxAmmo;
     }
 
     void Update()
@@ -52,25 +59,11 @@ public class RubyController : MonoBehaviour
         horizontal = mobileJoystick.Horizontal;
         vertical = mobileJoystick.Vertical;
 
-#endif        
-        Vector2 move = new Vector2(horizontal, vertical);
+#endif
 
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
+        MoveAnimation();
 
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
-
-        if (isInvincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer < 0)
-                isInvincible = false;
-        }
+        InvincibleCheck();
 
         if (Input.GetKeyDown(KeyCode.C))
             Launch();
@@ -87,24 +80,58 @@ public class RubyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        PhysicalMove();
+    }
+
+    public void InvincibleCheck()
+    {
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+    } 
+
+    public void CheckDirection(Vector2 direction)
+    {
+        if (!Mathf.Approximately(direction.x, 0.0f) || !Mathf.Approximately(direction.y, 0.0f))
+        {
+            lookDirection.Set(direction.x, direction.y);
+            lookDirection.Normalize();
+        }
+    }
+
+    public void PhysicalMove()
+    {
         Vector2 position = rigidbody2D.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
         rigidbody2D.MovePosition(position);
     }
 
-    public void PlaySound(AudioClip clip)
+    public void MoveAnimation()
     {
-        audioSource.PlayOneShot(clip);
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        CheckDirection(move);
+
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
     }
 
     public void Launch()
     {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.3f, Quaternion.identity);
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-        animator.SetTrigger("Launch");
-        PlaySound(throwingClip);
+        if (currentAmmo > 0)
+        {
+            GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2D.position + Vector2.up * 0.3f, Quaternion.identity);
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
+            animator.SetTrigger("Launch");
+            PlaySound(throwingClip);
+            ChangeAmmoAmount(-1);
+        }
     }
 
     public void attemptToInteract()
@@ -118,10 +145,16 @@ public class RubyController : MonoBehaviour
         }
     }
 
+    public void ChangeAmmoAmount(int amount)
+    {
+        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
+        ammoDisplay.text = "= " + currentAmmo + "/" + maxAmmo;
+    }
+
     public void ChangeHealth (int amount)
     {
         if (amount < 0)
-        { 
+        {
             animator.SetTrigger("Hit");
             if (isInvincible)
                 return;
@@ -129,14 +162,27 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
-        else
-            pickUpEffect.Play();
             
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
         if (currentHealth <= 0) Die();
     }
 
+    public void RecountAmmo()
+    {
+        
+    }
+
+    public void PickEffect()
+    {
+        pickUpEffect.Play();
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
+    }
+    
     public void Die()
     {
         alive = false;
