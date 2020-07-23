@@ -17,8 +17,8 @@ public class AmmoCollectible : MonoBehaviour
             {
                 controller.PickEffect();
                 controller.PlaySound(collectedClip);
-                controller.currentAmmo += ammoAmount;
-                controller.RecountAmmo();
+                controller.ChangeAmmoAmount(ammoAmount);
+                
                 Destroy(gameObject);
             }
         }

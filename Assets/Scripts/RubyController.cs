@@ -130,8 +130,7 @@ public class RubyController : MonoBehaviour
             projectile.Launch(lookDirection, 300);
             animator.SetTrigger("Launch");
             PlaySound(throwingClip);
-            currentAmmo -= 1;
-            RecountAmmo();
+            ChangeAmmoAmount(-1);
         }
     }
 
@@ -144,6 +143,12 @@ public class RubyController : MonoBehaviour
             if (character != null)
                 character.Interact();
         }
+    }
+
+    public void ChangeAmmoAmount(int amount)
+    {
+        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
+        ammoDisplay.text = "= " + currentAmmo + "/" + maxAmmo;
     }
 
     public void ChangeHealth (int amount)
@@ -165,7 +170,7 @@ public class RubyController : MonoBehaviour
 
     public void RecountAmmo()
     {
-        ammoDisplay.text = "= " + currentAmmo + "/" + maxAmmo;
+        
     }
 
     public void PickEffect()

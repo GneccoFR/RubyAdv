@@ -47,7 +47,7 @@ TagManager:
   - name: Ground
     uniqueID: 3766480507
     locked: 0
-  - name: Above Ground
+  - name: PickUps
     uniqueID: 1353266279
     locked: 0
   - name: Air
