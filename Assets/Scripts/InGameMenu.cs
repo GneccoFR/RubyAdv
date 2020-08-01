@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
-    
+    CanvasScript canvasScript;
     private bool active = false;
     
     private void Update()

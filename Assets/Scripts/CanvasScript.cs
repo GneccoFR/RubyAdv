@@ -11,18 +11,59 @@ public class CanvasScript : MonoBehaviour
     Animator animator;
     public bool mainMenuIsActive;
 
+    /*
+    private static CanvasScript instance = null;
+
+    public static CanvasScript GetInstance()
+    {
+        return instance;
+    }
+
+    private void Singleton()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    */
     void Awake()
     {
+        //Singleton();
         animator = GetComponent<Animator>();
-        animator.SetTrigger("MainOpen");
-        mainMenuIsActive = true;
-        manager = GameManager.GetInstance();
+        OpenTitle();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && mainMenuIsActive == false) 
+        if (Input.GetKeyDown(KeyCode.Escape) && mainMenuIsActive == false)
             SwapMenus();
+    }
+
+    /*
+    public void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnTitleLoaded;
+    }
+
+    public void OnTitleLoaded(Scene scene, LoadSceneMode mode)
+    {
+        OpenTitle();
+    }
+    */
+
+    public void OpenTitle()
+    {
+        //animator = GetComponent<Animator>();
+        Time.timeScale = 1.0f;
+        animator.SetTrigger("MainOpen");
+        mainMenuIsActive = true;
+        manager = GameManager.GetInstance();
     }
 
     public void SwapMenus()

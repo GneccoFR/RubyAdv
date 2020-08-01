@@ -38,8 +38,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    Unity.Timeline.Editor.dll:
-    - UnityEditor.Timeline.SequenceHierarchy
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -1174,4 +1172,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/Main.unity
   playerPath: C:/Users/Core I7/Desktop/Practicas Fabi/Builds/Ruby's Adventure Mob
-    Alpha/RubyMobBeta1.0.apk
+    Alpha/Ruby'sAdventureMobile.apk
